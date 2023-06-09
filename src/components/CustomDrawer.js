@@ -1,4 +1,3 @@
-import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import {
   DrawerContentScrollView,
@@ -6,10 +5,10 @@ import {
 } from '@react-navigation/drawer';
 import { COLORS } from '../constants/theme';
 import { Ionicons } from '@expo/vector-icons';
-import { AuthContext } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 
 const CustomDrawer = (props) => {
-  const { logout } = useContext(AuthContext);
+  const { logout } = useAuth();
 
   return (
     <View style={{ flex: 1 }}>

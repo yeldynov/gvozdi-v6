@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -10,10 +10,10 @@ import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import InputField from '../components/InputField';
 import CustomButton from '../components/CustomButton';
 import { COLORS } from '../constants/theme';
-import { AuthContext } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 
 const LoginScreen = ({ navigation }) => {
-  const { login, error } = useContext(AuthContext);
+  const { login, error } = useAuth();
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
 

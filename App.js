@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { AuthProvider } from './src/context/AuthContext';
 import AppNav from './src/navigation/AppNav';
+import { SessionProvider } from './src/context/SessionContext';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -27,7 +28,9 @@ export default function App() {
 
   return (
     <AuthProvider>
-      <AppNav handleOnLayout={onLayoutRootView} />
+      <SessionProvider>
+        <AppNav handleOnLayout={onLayoutRootView} />
+      </SessionProvider>
     </AuthProvider>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useState } from 'react';
 import {
   View,
   Text,
@@ -10,13 +10,13 @@ import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import InputField from '../components/InputField';
 import CustomButton from '../components/CustomButton';
 import { COLORS } from '../constants/theme';
-import { AuthContext } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 
 const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
-  const { register, error, setError } = useContext(AuthContext);
+  const { register, error, setError } = useAuth();
 
   const submit = () => {
     if (password !== confirmPassword) {

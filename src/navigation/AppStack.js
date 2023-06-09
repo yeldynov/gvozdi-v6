@@ -22,6 +22,7 @@ const AppStack = () => {
         //     <Text>Step Sure</Text>
         //   </TouchableOpacity>
         // ),
+        // headerTransparent: true,
         headerStyle: {
           backgroundColor: COLORS.brand,
         },
