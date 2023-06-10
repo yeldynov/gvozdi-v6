@@ -45,7 +45,7 @@ const SessionDetailScreen = ({ navigation, route }) => {
           <View style={styles.textGroup}>
             <Text style={styles.textKey}>{'Duration: '}</Text>
             <Text style={styles.textValue}>
-              {moment.utc(session?.duration).format('hh:mm:ss')}
+              {moment.utc(session?.duration).format('mm:ss')}
             </Text>
           </View>
           <View style={styles.feedbackGroup}>

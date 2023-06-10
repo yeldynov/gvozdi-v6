@@ -18,8 +18,12 @@ const HistoryScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchSessions().then(() => setIsLoading(false));
-  }, []);
+    const unsubscribe = navigation.addListener('focus', () => {
+      fetchSessions().then(() => setIsLoading(false));
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
   if (isLoading)
     return (

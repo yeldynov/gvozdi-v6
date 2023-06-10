@@ -8,7 +8,7 @@ export const SessionProvider = ({ children }) => {
 
   const fetchSessions = async () => {
     const { data } = await api.get('sessions');
-    setSessions(data);
+    setSessions(data.reverse());
   };
 
   const createSession = async (duration, feedback) => {

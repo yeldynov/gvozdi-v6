@@ -57,14 +57,12 @@ const styles = StyleSheet.create({
   },
   feedback: {
     fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'sans-serif-condensed',
+    fontFamily: 'nunito-bold',
     color: '#00A896',
   },
   date: {
     fontSize: 16,
-    fontWeight: '700',
-    fontFamily: 'sans-serif-condensed',
+    fontFamily: 'nunito-regular',
   },
   darkItemDate: { color: '#fff' },
   lightItemDate: { color: '#9B9B9B' },
