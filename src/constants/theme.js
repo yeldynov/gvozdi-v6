@@ -8,9 +8,9 @@ export const COLORS = {
   accentRed: '#FF3333',
   playfullYellow: '#FEDC00',
 
-  darkContainer: '#1E1E1E',
+  calmDark: '#1E1E1E',
+  lightWhite: '#FAFAFC',
   calmGray: '#9B9B9B',
   grayWhite: '#F3F4F8',
-  lightWhite: '#FAFAFC',
   pureWhite: '#FFFFFF',
 };

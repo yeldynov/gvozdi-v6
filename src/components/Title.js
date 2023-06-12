@@ -1,19 +1,26 @@
 import { StyleSheet, Text } from 'react-native';
 import { COLORS } from '../constants/theme';
+import { useTheme } from '../context/ThemeContext';
 
 const Title = ({ children, customStyles }) => {
-  return <Text style={[styles.title, customStyles]}>{children}</Text>;
+  const { isDarkTheme } = useTheme();
+
+  const textColor = isDarkTheme ? styles.lightText : styles.darkText;
+
+  return (
+    <Text style={[styles.title, textColor, customStyles]}>{children}</Text>
+  );
 };
 
 export default Title;
 
 const styles = StyleSheet.create({
   title: {
-    marginTop: 10,
-    paddingBottom: 10,
-    fontFamily: 'playfair-bold',
+    marginVertical: 20,
     fontSize: 24,
+    fontFamily: 'nunito-bold',
     textAlign: 'center',
-    color: COLORS.primaryDark,
   },
+  darkText: { color: COLORS.primaryDark },
+  lightText: { color: COLORS.freshGreen },
 });
