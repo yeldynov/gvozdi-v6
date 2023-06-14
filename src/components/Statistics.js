@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
@@ -8,22 +8,22 @@ import {
 } from 'react-native';
 import moment from 'moment';
 import Title from './Title';
-import { useSessions } from '../context/SessionContext';
 import Chart from './Chart';
 import i18n from '../lang/i18n';
 import { useTheme } from '../context/ThemeContext';
 import { COLORS } from '../constants/theme';
+import useStats from '../hooks/useStats';
 
 const Statistics = () => {
   const { isDarkTheme } = useTheme();
-  const { sessions, fetchSessions } = useSessions();
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetchSessions().then(() => {
-      setIsLoading(false);
-    });
-  }, []);
+  const {
+    isLoading,
+    sessions,
+    durationsByDate,
+    getTotalTime,
+    getAverage,
+    getAverageDuration,
+  } = useStats();
 
   if (sessions.length < 1 && !isLoading) {
     return (
@@ -31,37 +31,24 @@ const Statistics = () => {
     );
   }
 
-  const totalTime = sessions.reduce((acc, curr) => curr.duration + acc, 0);
-  const average = (
-    moment.duration(totalTime).asMinutes() / sessions.length
-  ).toFixed(0);
+  const totalTime = getTotalTime();
+  const average = getAverage();
+  const averageDuration = getAverageDuration();
 
-  const durationsByDate = {};
-  sessions.forEach((item) => {
-    const date = moment(item.date).format('DD/MM');
+  // Generate a sequence of dates for the last 7 days
+  const today = moment().startOf('day');
+  const dateSequence = Array.from({ length: 7 }, (_, index) =>
+    today.clone().subtract(index, 'days')
+  );
 
-    if (durationsByDate[date]) {
-      durationsByDate[date] += moment.duration(item.duration).asMinutes();
-      console.log(durationsByDate);
-    } else {
-      durationsByDate[date] = moment.duration(item.duration).asMinutes();
-    }
-  });
-
-  const labels = Object.keys(durationsByDate);
-  const durations = Object.values(durationsByDate);
-
-  // Average
-  const averageDuration = (
-    durations.reduce((sum, duration) => sum + duration, 0) / durations.length
-  ).toFixed();
+  const labels = dateSequence.map((date) => date.format('DD/MM'));
+  const durations = labels.map((date) => durationsByDate[date] || 0); // Fill missing durations with 0
 
   const averageLineDataset = {
     data: Array(labels.length).fill(averageDuration),
     color: (opacity = 1) => `rgba(255, 0,0, ${opacity})`,
   };
 
-  // Accumulated
   const accumulatedData = durations
     .slice()
     .reverse()
