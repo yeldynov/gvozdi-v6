@@ -9,8 +9,9 @@ export const COLORS = {
   playfullYellow: '#FEDC00',
 
   calmDark: '#1E1E1E',
-  lightWhite: '#FAFAFC',
+  gray: '#333333',
   calmGray: '#9B9B9B',
+  lightWhite: '#FAFAFC',
   grayWhite: '#F3F4F8',
   pureWhite: '#FFFFFF',
 };

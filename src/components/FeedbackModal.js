@@ -6,11 +6,11 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Text,
-  Label,
   TextInput,
   Alert,
 } from 'react-native';
 import moment from 'moment';
+import i18n from '../lang/i18n';
 
 const FeedbackModal = ({
   modalVisible,
@@ -33,7 +33,7 @@ const FeedbackModal = ({
       transparent
       visible={modalVisible}
       onRequestClose={() => {
-        Alert.alert('Modal has been closed');
+        Alert.alert(i18n.t('alertErrorText'));
         setModalVisible(!modalVisible);
       }}
     >
@@ -44,7 +44,7 @@ const FeedbackModal = ({
               'mm:ss:ms'
             )}{' '}
           </Text>
-          <Text style={styles.label}>How do you feel?</Text>
+          <Text style={styles.label}>{i18n.t('howDoYouFeelText')}</Text>
           <TextInput
             style={styles.input}
             value={feedback}
@@ -59,7 +59,10 @@ const FeedbackModal = ({
               style={[styles.button, styles.buttonClose]}
               onPress={handleSave}
             >
-              <Text style={styles.textStyle}>Save</Text>
+              <Text style={styles.textStyle}>
+                {' '}
+                {i18n.t('howDoYouFeelBtnText')}
+              </Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity

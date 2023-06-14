@@ -7,10 +7,18 @@ import {
   Dimensions,
 } from 'react-native';
 import Stopwatch from '../components/Stopwatch';
+import { useTheme } from '../context/ThemeContext';
+import { COLORS } from '../constants/theme';
 
 const CreateScreen = () => {
+  const { isDarkTheme } = useTheme();
+
+  const containerStyle = isDarkTheme
+    ? styles.darkContainer
+    : styles.lightContainer;
+
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, containerStyle]}>
       <Image style={styles.image} source={require('../../assets/man.png')} />
       <Text style={styles.createText}></Text>
       <Stopwatch />
@@ -26,7 +34,7 @@ const styles = StyleSheet.create({
   },
   title: {
     alignSelf: 'center',
-    color: '#9B9B9B',
+    color: COLORS.calmGray,
     height: '50%',
   },
   container: {
@@ -39,6 +47,8 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     alignSelf: 'center',
   },
+  lightContainer: { backgroundColor: COLORS.pureWhite },
+  darkContainer: { backgroundColor: COLORS.calmDark },
 });
 
 export default CreateScreen;

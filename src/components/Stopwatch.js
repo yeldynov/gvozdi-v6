@@ -4,18 +4,17 @@ import { useKeepAwake } from 'expo-keep-awake';
 import StopwatchTimer from 'react-native-animated-stopwatch-timer';
 import FeedbackModal from './FeedbackModal';
 import ConfirmModal from './ConfirmModal';
-// import i18n from '../../i18n/i18n';
-// import { ThemeContext } from '../context/ThemeContext';
-// import { navigate } from '../utils/navigationRef';
 import { useSessions } from '../context/SessionContext';
 import { useNavigation } from '@react-navigation/native';
+import { useTheme } from '../context/ThemeContext';
+import i18n from '../lang/i18n';
+import { COLORS } from '../constants/theme';
 
 const Stopwatch = () => {
   useKeepAwake();
   const stopwatchTimerRef = useRef(null);
   const { createSession } = useSessions();
-  // const { isDarkTheme } = useContext(ThemeContext);
-  const isDarkTheme = false;
+  const { isDarkTheme } = useTheme();
   const navigation = useNavigation();
 
   const [isCounting, setIsCounting] = useState(false);
@@ -65,10 +64,10 @@ const Stopwatch = () => {
           isVisible={showConfirm}
           onClose={() => setShowConfirm(false)}
           onConfirm={play}
-          message={'Prepare...'}
-          confirmButtonMessage={'Start!'}
-          titleText={'Prepare'}
-          rejectButtonMessage={'Back'}
+          message={i18n.t('confirmModalPrepareMessage')}
+          confirmButtonMessage={i18n.t('confirmModalPrepareBtnText')}
+          titleText={i18n.t('confirmModalPrepareTitleText')}
+          rejectButtonMessage={i18n.t('confirmModalrejectBtnText')}
         />
       )}
       {!isCounting && (
@@ -86,14 +85,18 @@ const Stopwatch = () => {
           style={[styles.stopButton, styles.mainButton]}
           onPress={pause}
         >
-          <Text style={styles.buttonText}>{'Stop'}</Text>
+          <Text style={styles.buttonText}>
+            {i18n.t('stopwatchStopButtonText')}
+          </Text>
         </TouchableOpacity>
       ) : (
         <TouchableOpacity
           style={[styles.startButton, styles.mainButton]}
           onPress={() => setShowConfirm(true)}
         >
-          <Text style={styles.buttonText}>{'Start'}</Text>
+          <Text style={styles.buttonText}>
+            {i18n.t('stopwatchStartButtonText')}
+          </Text>
         </TouchableOpacity>
       )}
     </>
@@ -111,13 +114,13 @@ const styles = StyleSheet.create({
     elevation: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 15,
   },
   startButton: {
-    backgroundColor: '#FF5500',
+    backgroundColor: COLORS.brand,
   },
   stopButton: {
-    backgroundColor: '#FF3333',
+    backgroundColor: COLORS.accentRed,
   },
   buttonText: {
     fontSize: 32,
@@ -140,8 +143,8 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     fontFamily: 'nunito-bold',
   },
-  darkContainer: { backgroundColor: '#000', borderColor: '#FF5500' },
-  lightContainer: { backgroundColor: '#fff', borderColor: '#00A896' },
-  darkChar: { color: '#00A896' },
-  lightChar: { color: '#002C7D' },
+  darkContainer: { backgroundColor: '#000', borderColor: COLORS.brand },
+  lightContainer: { backgroundColor: '#fff', borderColor: COLORS.freshGreen },
+  darkChar: { color: COLORS.freshGreen },
+  lightChar: { color: COLORS.primaryDark },
 });

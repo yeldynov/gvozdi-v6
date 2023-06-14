@@ -13,11 +13,21 @@ import moment from 'moment';
 import { Octicons } from '@expo/vector-icons';
 import ConfirmModal from '../components/ConfirmModal';
 import { useSessions } from '../context/SessionContext';
+import { useTheme } from '../context/ThemeContext';
+import i18n from '../lang/i18n';
+import { COLORS } from '../constants/theme';
 
 const SessionDetailScreen = ({ navigation, route }) => {
-  const { sessions, deleteSession } = useSessions();
   const id = route.params?._id;
+  const { sessions, deleteSession } = useSessions();
   const [isVisible, setIsVisible] = useState(false);
+  const { isDarkTheme } = useTheme();
+
+  const bgContainerStyle = isDarkTheme
+    ? styles.darkContainer
+    : styles.lightContainer;
+
+  const textStyle = isDarkTheme ? styles.darkText : styles.lightText;
 
   function removeSession() {
     deleteSession(id);
@@ -27,7 +37,7 @@ const SessionDetailScreen = ({ navigation, route }) => {
   const session = sessions.find((s) => s._id === id);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, bgContainerStyle]}>
       <ScrollView>
         <View style={styles.imageContainer}>
           <Image
@@ -35,40 +45,45 @@ const SessionDetailScreen = ({ navigation, route }) => {
             style={styles.image}
           />
         </View>
-        <View style={styles.outerContainer}>
-          <View style={styles.textGroup}>
-            <Text style={styles.textKey}>{'Date: '}</Text>
-            <Text style={styles.textValue}>
-              {moment(session?.date).format('DD/MM/YYYY hh:mm')}
-            </Text>
-          </View>
-          <View style={styles.textGroup}>
-            <Text style={styles.textKey}>{'Duration: '}</Text>
-            <Text style={styles.textValue}>
-              {moment.utc(session?.duration).format('mm:ss')}
-            </Text>
-          </View>
-          <View style={styles.feedbackGroup}>
-            <Text style={styles.textKey}>{'Feedback: '}</Text>
-            <Text style={styles.textValue}>{session?.feedback}</Text>
-          </View>
-          <TouchableOpacity
-            onPress={() => setIsVisible(true)}
-            style={styles.removeBtn}
-          >
-            <Text style={styles.removeText}>Remove Session</Text>
-            <Octicons name='trash' size={36} color='red' />
-          </TouchableOpacity>
-          <ConfirmModal
-            isVisible={isVisible}
-            onClose={() => setIsVisible(false)}
-            onConfirm={removeSession}
-            message={'Are you sure you want to remove this session?'}
-            confirmButtonMessage={'Delete'}
-            titleText={'Confirmation'}
-            rejectButtonMessage={'Back'}
-          />
+        <View style={styles.textGroup}>
+          <Text style={[styles.textKey, textStyle]}>
+            {i18n.t('dateKeyText')}
+          </Text>
+          <Text style={[styles.textValue, textStyle]}>
+            {moment(session?.date).format('DD/MM/YYYY hh:mm')}
+          </Text>
         </View>
+        <View style={styles.textGroup}>
+          <Text style={[styles.textKey, textStyle]}>
+            {i18n.t('durationKeyText')}
+          </Text>
+          <Text style={[styles.textValue, textStyle]}>
+            {moment.utc(session?.duration).format('mm:ss')}
+          </Text>
+        </View>
+        <View style={styles.feedbackGroup}>
+          <Text style={[styles.textKey, textStyle]}>
+            {i18n.t('feedbackKeyText')}
+          </Text>
+          <Text style={[styles.textValue, textStyle]}>{session?.feedback}</Text>
+        </View>
+
+        <TouchableOpacity
+          onPress={() => setIsVisible(true)}
+          style={styles.removeBtn}
+        >
+          <Text style={styles.removeText}>{i18n.t('removeRecordBtnText')}</Text>
+          <Octicons name='trash' size={36} color='red' />
+        </TouchableOpacity>
+        <ConfirmModal
+          isVisible={isVisible}
+          onClose={() => setIsVisible(false)}
+          onConfirm={removeSession}
+          message={i18n.t('confirmModalMessage')}
+          confirmButtonMessage={i18n.t('confirmModalBtnMessage')}
+          titleText={i18n.t('confirmModalTitleText')}
+          rejectButtonMessage={i18n.t('confirmModalrejectBtnText')}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -78,9 +93,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    paddingHorizontal: 20,
   },
-  lightContainer: { backgroundColor: '#FFFFFF' },
-  darkContainer: { backgroundColor: '#1E1E1E' },
+  lightContainer: { backgroundColor: COLORS.pureWhite },
+  darkContainer: { backgroundColor: COLORS.calmDark },
+  lightText: { color: COLORS.calmDark },
+  darkText: { color: COLORS.pureWhite },
   outerContainer: {
     marginHorizontal: 40,
   },
@@ -97,26 +115,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     borderWidth: 1,
-    borderColor: '#FF3333',
+    borderColor: COLORS.accentRed,
     borderRadius: 24,
     marginTop: 30,
   },
   removeText: {
     marginRight: 10,
     fontSize: 18,
-    fontFamily: 'sans-serif-condensed',
-    color: '#FF3333',
+    fontFamily: 'nunito-bold',
+    color: COLORS.accentRed,
   },
   textKey: {
-    fontWeight: 'bold',
-    // color: '#002C7D',
     fontSize: 18,
     textAlign: 'left',
-    fontFamily: 'sans-serif-condensed',
+    fontFamily: 'nunito-bold',
   },
   textValue: {
-    color: '#002C7D',
-    fontFamily: 'sans-serif-condensed',
+    color: COLORS.primaryDark,
+    fontFamily: 'nunito-regular',
     fontSize: 18,
     textAlign: 'justify',
   },

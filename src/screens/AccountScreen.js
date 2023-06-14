@@ -18,7 +18,7 @@ import LanguageButtons from '../components/LanguageButtons';
 import { COLORS } from '../constants/theme';
 
 const AccountScreen = () => {
-  const { signout } = useAuth();
+  const { logout } = useAuth();
   const [lang, setLang] = useState(i18n.locale);
   const { isDarkTheme, toggleTheme } = useTheme();
 
@@ -34,7 +34,7 @@ const AccountScreen = () => {
         {i18n.t('settingsTitleText')}
       </Title>
 
-      <TouchableOpacity style={styles.button} onPress={signout}>
+      <TouchableOpacity style={styles.button} onPress={logout}>
         <Text style={styles.buttonText}>{i18n.t('signOutBtnText')}</Text>
       </TouchableOpacity>
       <LanguageButtons setLang={setLang} lang={lang} />

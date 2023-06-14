@@ -53,7 +53,7 @@ const RegisterScreen = ({ navigation }) => {
         <View style={{ alignItems: 'center' }}>
           <Image
             style={styles.image}
-            source={require('../../assets/man.png')}
+            source={require('../../assets/girl.png')}
           />
         </View>
         <Text style={[styles.text, textStyle]}>

@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import { StyleSheet, View, Dimensions, Text, ScrollView } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
+import { useTheme } from '../context/ThemeContext';
 // import i18n from '../../i18n/i18n';
 // import { ThemeContext } from '../context/ThemeContext';
 
 const Chart = ({ labels, averageLineDataset, durations, accumulatedData }) => {
-  // const { isDarkTheme } = useContext(ThemeContext);
-  const isDarkTheme = false;
+  const { isDarkTheme } = useTheme();
 
   const daysChartData = {
     labels,

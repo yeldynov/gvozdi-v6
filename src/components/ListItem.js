@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import moment from 'moment';
 import uri from '../../assets/icons/icon5.png';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useTheme } from '../context/ThemeContext';
+import { COLORS } from '../constants/theme';
 
 function cutFeedback(str) {
   if (str.length <= 20) return str;
@@ -10,18 +12,28 @@ function cutFeedback(str) {
 }
 
 const ListItem = ({ item, navigation }) => {
+  const { isDarkTheme } = useTheme();
+
+  const itemDateStyle = isDarkTheme
+    ? styles.darkItemDate
+    : styles.lightItemDate;
+
+  const itemContainerStyle = isDarkTheme
+    ? styles.darkItemContainer
+    : styles.lightItemContainer;
+
   return (
     <TouchableOpacity
       onPress={() => {
         navigation.navigate('SessionDetails', { _id: item._id });
       }}
-      style={styles.itemContainer}
+      style={[styles.itemContainer, itemContainerStyle]}
     >
       <Image style={styles.thumbnail} source={uri} />
       <View style={styles.metaDataContainer}>
         <View style={styles.metaDataContent}>
           <Text style={styles.feedback}>{cutFeedback(item.feedback)}</Text>
-          <Text style={[styles.date]}>
+          <Text style={[styles.date, itemDateStyle]}>
             {moment(item.date).format('DD/MM/YY')}
           </Text>
         </View>
@@ -31,10 +43,11 @@ const ListItem = ({ item, navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  lightItemContainer: { backgroundColor: COLORS.pureWhite },
+  darkItemContainer: { backgroundColor: COLORS.gray },
   itemContainer: {
     height: 80,
-    elevation: 3,
-    borderColor: '#9B9B9B',
+    elevation: 10,
     borderRadius: 3,
     flexDirection: 'row',
     marginHorizontal: 20,
@@ -58,14 +71,14 @@ const styles = StyleSheet.create({
   feedback: {
     fontSize: 18,
     fontFamily: 'nunito-bold',
-    color: '#00A896',
+    color: COLORS.freshGreen,
   },
   date: {
     fontSize: 16,
     fontFamily: 'nunito-regular',
   },
-  darkItemDate: { color: '#fff' },
-  lightItemDate: { color: '#9B9B9B' },
+  darkItemDate: { color: COLORS.pureWhite },
+  lightItemDate: { color: COLORS.calmGray },
 });
 
 export default ListItem;

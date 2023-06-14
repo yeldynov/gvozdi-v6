@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -10,13 +10,12 @@ import moment from 'moment';
 import Title from './Title';
 import { useSessions } from '../context/SessionContext';
 import Chart from './Chart';
-// import { Context as SessionContext } from '../context/SessionContext';
-// import i18n from '../../i18n/i18n';
-// import { ThemeContext } from '../context/ThemeContext';
+import i18n from '../lang/i18n';
+import { useTheme } from '../context/ThemeContext';
+import { COLORS } from '../constants/theme';
 
 const Statistics = () => {
-  // const { isDarkTheme } = useContext(ThemeContext);
-  const isDarkTheme = false;
+  const { isDarkTheme } = useTheme();
   const { sessions, fetchSessions } = useSessions();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -81,41 +80,43 @@ const Statistics = () => {
     <ScrollView>
       {isLoading ? (
         <View>
-          <ActivityIndicator size='large' color='#FF5500' />
+          <ActivityIndicator size='large' color={COLORS.brand} />
         </View>
       ) : (
         <View style={styles.container}>
           <Text style={[styles.text, textStyle]}>
-            {'Total: '} {sessions.length}
-            {' sessions for '} {durations.length}
-            {' days'}
+            {i18n.t('statisticsTotal')} {sessions.length}
+            {i18n.t('statisticsSessionsForText')} {durations.length}
+            {i18n.t('statisticsDaysText')}
           </Text>
           <Text style={[styles.text, textStyle]}>
-            {'Total '} {moment.utc(totalTime).format('hh')}
-            {' hours '}
-            {moment(totalTime).format('mm')} {' minutes '}
-            {moment(totalTime).format('ss')} {' seconds'}
+            {i18n.t('statisticsAllText')} {moment.utc(totalTime).format('hh')}
+            {i18n.t('statisticsHourText')}
+            {moment(totalTime).format('mm')} {i18n.t('statisticsMinText')}
+            {moment(totalTime).format('ss')} {i18n.t('statisticSecText')}
           </Text>
           <Text style={[styles.text, textStyle]}>
-            {'Average per session: '} {average}
-            {' min'}
+            {i18n.t('statisticsAveragePerSessionText')} {average}
+            {i18n.t('statisticsMinText')}
           </Text>
           <Text style={[styles.text, textStyle]}>
-            {'Average per day: '} {averageDuration}
-            {' min'}
+            {i18n.t('statisticsAveragePerDayText')} {averageDuration}
+            {i18n.t('statisticsMinText')}
           </Text>
-          <Title>{'Last Time: '}</Title>
+
+          <Title h4>{i18n.t('statisticsLastTimeText')}</Title>
           <Text style={[styles.text, textStyle]} h5>
-            {'Total: '}
+            {i18n.t('statisticsTimeText')}
             {moment.duration(sessions[0]?.duration).asMinutes().toFixed(0)}
-            {' minutes: '}
+            {i18n.t('statisticsMinText')}
             {moment(sessions[0]?.duration).format('ss')}
-            {' seconds:'}
+            {i18n.t('statisticSecText')}
           </Text>
           <Text style={[styles.text, textStyle]} h5>
-            {'Date: '}
+            {i18n.t('statisticsDateText')}
             {moment(sessions[0]?.date).format('DD/MM/YYYY')}
           </Text>
+
           <Chart
             labels={labels}
             averageLineDataset={averageLineDataset}

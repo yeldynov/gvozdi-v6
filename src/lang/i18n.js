@@ -3,6 +3,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const i18n = new I18n({
   en: {
+    // Drawer
+    tellAFriendText: 'Tell a Friend',
+    signOutText: 'Sign Out',
+    homeLinkText: 'Practice',
+    guideLinkText: 'Guide',
+    contactLinkText: 'Contact Developer',
     // SignUp / SignIn Screens
     signUpHeaderText: 'Create an Account ✍️',
     signInHeaderText: 'Sign In 🚪🚶',
@@ -19,6 +25,8 @@ const i18n = new I18n({
     historyTitleText: 'The History',
     historyNavigationText: 'History',
     cleanHistoryText: "There are no records yet. Let's stand on nails...",
+    loadingText: 'Loading Sessions...',
+
     // Account Screen
     settingsTitleText: 'Account Settings',
     signOutBtnText: 'Sign Out',
@@ -62,8 +70,30 @@ const i18n = new I18n({
     // Chart
     chartStatsPerDayText: 'Daily statistics:',
     chartStatsAccumulatedText: 'Accumulated total:',
+    // Instruction Screen
+    instructionTitleText: 'How to stand on Sadhu Boards',
+    step1Text: 'Place the Sadhu Boards on a flat surface.',
+    step2Text:
+      "Stand with your bare feet on the Boards of the Sadhu. It's best to have someone help you up by holding your hands. You can stand alone, holding on to some kind of support (table, wall).",
+    step3Text: 'Relax and tune in for a long stay on the Sadhu Boards.',
+    step4Text: 'Look at an arbitrary point in front of you. Concentrate.',
+    step5Text: 'Breath rate is arbitrary.',
+    step6Text: 'Start slowly.',
+    step7Text:
+      'Listening to yourself, increase your standing time to 2 minutes.',
+    step8Text:
+      'You will feel the effect from the first time, but serious changes and the realization of the intention will begin from the second minute of standing.',
   },
+  //
+  // УКРАЇНСЬКА МОВА
+  //
   uk: {
+    // Drawer
+    tellAFriendText: 'Поділитися',
+    signOutText: 'Вийти',
+    homeLinkText: 'Практика',
+    guideLinkText: 'Інструкція',
+    contactLinkText: 'Залишити відгук',
     // SignUp / SignIn Screens
     signUpHeaderText: 'Створити Акаунт ✍️',
     signInHeaderText: 'Увійти в Акаунт 🚪🚶',
@@ -80,6 +110,7 @@ const i18n = new I18n({
     historyTitleText: 'Історія Цвяхостоянь',
     historyNavigationText: 'Історія',
     cleanHistoryText: 'Поки що записів немає. Давайте встанемо на цвяхи...',
+    loadingText: 'Завантаження даних...',
     // Account Screen
     settingsTitleText: 'Налаштування Акаунту',
     signOutBtnText: 'Змінити Користувача',
@@ -123,8 +154,31 @@ const i18n = new I18n({
     // Chart
     chartStatsPerDayText: 'Поденна Статистика:',
     chartStatsAccumulatedText: 'Накопичений підсумок:',
+    // Instruction Screen
+    instructionTitleText: 'Як стояти на Дошках Садху',
+    step1Text: 'Поставте Дошки Садху на рівну поверню.',
+    step2Text:
+      'Босими ступнями встаньте на Дошки Садху. Краще, якщо хтось допоможе вам підвестися, тримаючи за руки. Можна встати і одному, тримаючись за якусь опору (стіл, стіна).',
+    step3Text:
+      'Розслабтеся та налаштуйтеся на довге перебування на Дошках Садху.',
+    step4Text:
+      'Поглядом зафіксуйте довільну точку перед собою. Сконцентруйтеся.',
+    step5Text: 'Темп дихання довільний.',
+    step6Text: 'Починати треба поступово.',
+    step7Text: 'Прислухаючись до себе, доведіть час стояння до 2 хвилин.',
+    step8Text:
+      'Ефект Ви зможете відчути з першого разу, а от серйозні зміни та реалізація наміру розпочнуться з другої хвилини стояння.',
   },
+  //
+  // РУССКИЙ ЯЗЫК
+  //
   ru: {
+    // Drawer
+    tellAFriendText: 'Поделиться',
+    signOutText: 'Выйти',
+    homeLinkText: 'Практика',
+    guideLinkText: 'Инструкция',
+    contactLinkText: 'Оставить отзыв',
     // SignUp / SignIn Screens
     signUpHeaderText: 'Создать Аккаунт ✍️',
     signInHeaderText: 'Войти в Аккаунт 🚪🚶',
@@ -141,6 +195,7 @@ const i18n = new I18n({
     historyTitleText: 'История гвоздестояний',
     historyNavigationText: 'История',
     cleanHistoryText: 'Пока что записей нет. Давайте встанем на гвозди...',
+    loadingText: 'Загрузка данных...',
     // Account Screen
     settingsTitleText: 'Настройки Аккаунта',
     signOutBtnText: 'Сменить Пользователя',
@@ -184,6 +239,20 @@ const i18n = new I18n({
     // Chart
     chartStatsPerDayText: 'Статистика по дням:',
     chartStatsAccumulatedText: 'Накопленный итог:',
+    // Instruction Screen
+    instructionTitleText: 'Как стоять на Досках Садху',
+    step1Text: 'Поставьте Доски Садху на ровную поверхность.',
+    step2Text:
+      'Босыми ступнями встаньте на Доски Садху. Лучше, если кто-нибудь поможет вам встать, держа за руки. Можно встать и одному, держась за какую-то опору (стол, стена).',
+    step3Text:
+      'Расслабьтесь и настройтесь на длительное пребывание на Досках Садху.',
+    step4Text:
+      'Взглядом зафиксируйте произвольную точку перед собой. Сконцентрируйтесь.',
+    step5Text: 'Темп дыхания произвольный.',
+    step6Text: 'Начинать нужно постепенно.',
+    step7Text: 'Прислушиваясь к себе, доведите время стояния до 2 минут.',
+    step8Text:
+      'Эффект Вы почувствуете с первого раза, а вот серьезные изменения и реализация намерения начнутся со второй минуты стояния.',
   },
 });
 

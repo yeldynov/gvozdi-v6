@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
     fontFamily: 'nunito-bold',
     textAlign: 'center',
   },
-  darkText: { color: COLORS.primaryDark },
+  darkText: { color: COLORS.calmDark },
   lightText: { color: COLORS.freshGreen },
 });
