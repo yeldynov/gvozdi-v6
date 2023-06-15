@@ -6,6 +6,8 @@ import { AuthProvider } from './src/context/AuthContext';
 import AppNav from './src/navigation/AppNav';
 import { SessionProvider } from './src/context/SessionContext';
 import { ThemeProvider } from './src/context/ThemeContext';
+import { StatusBar } from 'expo-status-bar';
+import { COLORS } from './src/constants/theme';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,6 +34,7 @@ export default function App() {
       <SessionProvider>
         <ThemeProvider>
           <AppNav handleOnLayout={onLayoutRootView} />
+          <StatusBar style='auto' backgroundColor={COLORS.brand} />
         </ThemeProvider>
       </SessionProvider>
     </AuthProvider>

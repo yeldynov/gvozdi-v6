@@ -5,6 +5,7 @@ import {
   ImageBackground,
   Image,
   StyleSheet,
+  Share,
 } from 'react-native';
 import {
   DrawerContentScrollView,
@@ -22,6 +23,26 @@ const CustomDrawer = (props) => {
 
   const containerColor = isDarkTheme ? COLORS.calmDark : COLORS.pureWhite;
   const textColor = isDarkTheme ? COLORS.pureWhite : COLORS.calmDark;
+
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          "Hey there! I've been using StepSure and it's been an incredible journey. This app has helped me stay on track with my goals and maintain a mindful lifestyle. I highly recommend giving it a try! Download StepSure now and start your own path towards a healthier and more balanced life. #StepSureApp #MindfulLiving",
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -54,7 +75,7 @@ const CustomDrawer = (props) => {
         </View>
       </DrawerContentScrollView>
       <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: '#ccc' }}>
-        <TouchableOpacity onPress={() => {}} style={{ paddingVertical: 15 }}>
+        <TouchableOpacity onPress={onShare} style={{ paddingVertical: 15 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Ionicons name='share-social-outline' size={22} color={textColor} />
             <Text
