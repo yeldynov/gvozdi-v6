@@ -67,6 +67,8 @@ const i18n = new I18n({
     statisticsLastTimeText: 'Last Time: ',
     statisticsTimeText: 'Time: ',
     statisticsDateText: 'Date: ',
+    chartTitle: 'Last 7 days',
+    chart2Title: 'Accumulated Total',
     // Chart
     chartStatsPerDayText: 'Daily statistics:',
     chartStatsAccumulatedText: 'Accumulated total:',
@@ -159,6 +161,8 @@ const i18n = new I18n({
     statisticsLastTimeText: 'Останній раз: ',
     statisticsTimeText: 'Час: ',
     statisticsDateText: 'Дата: ',
+    chartTitle: 'Останні 7 днів',
+    chart2Title: 'Накопичений Підсумок',
     // Chart
     chartStatsPerDayText: 'Поденна Статистика:',
     chartStatsAccumulatedText: 'Накопичений підсумок:',
@@ -252,6 +256,8 @@ const i18n = new I18n({
     statisticsLastTimeText: 'Последний раз: ',
     statisticsTimeText: 'Время: ',
     statisticsDateText: 'Дата: ',
+    chartTitle: 'Последние 7 дней',
+    chart2Title: 'Накопленный Итог',
     // Chart
     chartStatsPerDayText: 'Статистика по дням:',
     chartStatsAccumulatedText: 'Накопленный итог:',

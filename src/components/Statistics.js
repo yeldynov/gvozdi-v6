@@ -8,11 +8,11 @@ import {
 } from 'react-native';
 import moment from 'moment';
 import Title from './Title';
-import Chart from './Chart';
 import i18n from '../lang/i18n';
 import { useTheme } from '../context/ThemeContext';
 import { COLORS } from '../constants/theme';
 import useStats from '../hooks/useStats';
+import Chart from './Chart';
 
 const Statistics = () => {
   const { isDarkTheme } = useTheme();
@@ -42,24 +42,7 @@ const Statistics = () => {
   );
 
   const labels = dateSequence.map((date) => date.format('DD/MM'));
-  const durations = labels.map((date) => durationsByDate[date] || 0); // Fill missing durations with 0
-
-  const averageLineDataset = {
-    data: Array(labels.length).fill(averageDuration),
-    color: (opacity = 1) => `rgba(255, 0,0, ${opacity})`,
-  };
-
-  const accumulatedData = durations
-    .slice()
-    .reverse()
-    .reduce((acc, duration, index) => {
-      if (index === 0) {
-        acc.push(duration);
-      } else {
-        acc.push(acc[index - 1] + duration);
-      }
-      return acc;
-    }, []);
+  const durations = labels.map((date) => durationsByDate[date] || 0);
 
   const textStyle = isDarkTheme ? styles.darkText : styles.lightText;
 
@@ -105,10 +88,12 @@ const Statistics = () => {
           </Text>
 
           <Chart
-            labels={labels}
-            averageLineDataset={averageLineDataset}
-            durations={durations}
-            accumulatedData={accumulatedData}
+            chartTitle={i18n.t('chartTitle')}
+            chart2Title={i18n.t('chart2Title')}
+            dates={labels}
+            durations={durations.reverse()}
+            color={COLORS.primaryDark}
+            bgColor={COLORS.primaryLight}
           />
         </View>
       )}
