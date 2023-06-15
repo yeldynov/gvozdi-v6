@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   text: {
-    fontFamily: 'sans-serif-condensed',
+    fontFamily: 'nunito-regular',
     fontSize: 16,
   },
   darkText: { color: '#000' },
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 30,
     fontSize: 20,
     textAlign: 'center',
-    fontFamily: 'sans-serif-condensed',
+    fontFamily: 'nunito-regular',
     color: '#9B9B9B',
   },
 });
