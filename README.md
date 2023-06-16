@@ -20,18 +20,7 @@ Here are some screenshots of the StepSure app:
 
 ## Installation
 
-To install StepSure, follow these steps:
-
-1. Clone this repository to your local machine.
-   git clone https://github.com/your-username/StepSure.git
-
-2. Open the project in your preferred IDE or code editor.
-
-3. Install the necessary dependencies.
-   npm install
-
-4. Launch the app on your device or emulator.
-   npm start
+Yor can download Android App [Here](https://expo.dev/accounts/shangnik/projects/gvozdi2/builds/0d94ef72-a17d-4aae-b32f-7f64ff4f0820)
 
 ## Feedback and Support
 
