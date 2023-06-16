@@ -6,10 +6,9 @@ StepSure is a mobile app designed to help you track and improve your daily activ
 
 Here are some screenshots of the StepSure app:
 
-![Screenshot 4](assets/screenshots/4.jpg)
-![Screenshot 1](assets/screenshots/1.jpg)
-![Screenshot 5](assets/screenshots/5.jpg)
-![Screenshot 3](assets/screenshots/3.jpg)
+<img src="assets/screenshots/4.jpg" alt="drawing" width="200"/>
+<img src="assets/screenshots/1.jpg" alt="drawing" width="200"/>
+<img src="assets/screenshots/5.jpg" alt="drawing" width="200"/>
 
 ## Features
 
