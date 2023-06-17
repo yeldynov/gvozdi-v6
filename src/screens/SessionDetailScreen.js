@@ -50,7 +50,7 @@ const SessionDetailScreen = ({ navigation, route }) => {
             {i18n.t('dateKeyText')}
           </Text>
           <Text style={[styles.textValue, textStyle]}>
-            {moment(session?.date).format('DD/MM/YYYY hh:mm')}
+            {moment(session?.date).format('DD/MM/YYYY HH:mm')}
           </Text>
         </View>
         <View style={styles.textGroup}>
