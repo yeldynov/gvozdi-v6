@@ -46,7 +46,6 @@ const HistoryScreen = ({ navigation }) => {
       <View style={[styles.container, containerStyle]}>
         <Title>{i18n.t('historyTitleText')}</Title>
         <Text style={styles.text}>{i18n.t('cleanHistoryText')}</Text>
-        <ActivityIndicator />
       </View>
     );
   }

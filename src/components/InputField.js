@@ -5,9 +5,10 @@ import {
   TextInput,
   StyleSheet,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { COLORS } from '../constants/theme';
 import { useTheme } from '@react-navigation/native';
+import { Feather } from '@expo/vector-icons';
 
 const InputField = ({
   label,
@@ -23,20 +24,32 @@ const InputField = ({
   const borderStyle = isDarkTheme ? styles.lightBorder : styles.darkBorder;
   const textStyle = isDarkTheme ? styles.light : styles.dark;
   const plsHolderStyle = isDarkTheme ? COLORS.pureWhite : COLORS.calmGray;
+  const [hidePassword, setHidePassword] = useState(true);
 
   return (
     <View style={[styles.container, borderStyle]}>
       {icon}
       {inputType == 'password' ? (
-        <TextInput
-          style={[styles.input, textStyle]}
-          placeholder={label}
-          placeholderTextColor={plsHolderStyle}
-          keyboardType={keyboardType}
-          secureTextEntry={true}
-          value={value}
-          onChangeText={onChangeText}
-        />
+        <>
+          <TextInput
+            style={[styles.input, textStyle]}
+            placeholder={label}
+            placeholderTextColor={plsHolderStyle}
+            keyboardType={keyboardType}
+            secureTextEntry={hidePassword}
+            value={value}
+            onChangeText={onChangeText}
+            autoCapitalize='none'
+            autoCorrect={false}
+          />
+          <TouchableOpacity onPress={() => setHidePassword(!hidePassword)}>
+            <Feather
+              name={hidePassword ? 'eye-off' : 'eye'}
+              size={22}
+              color={COLORS.brand}
+            />
+          </TouchableOpacity>
+        </>
       ) : (
         <TextInput
           style={[styles.input, textStyle]}
