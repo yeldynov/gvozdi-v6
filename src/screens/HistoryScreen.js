@@ -1,9 +1,6 @@
 import {
   View,
   Text,
-  TouchableOpacity,
-  SafeAreaView,
-  StatusBar,
   ActivityIndicator,
   FlatList,
   StyleSheet,
@@ -35,7 +32,7 @@ const HistoryScreen = ({ navigation }) => {
 
   if (isLoading)
     return (
-      <View>
+      <View style={[styles.container, containerStyle]}>
         <Title>{i18n.t('loadingText')}</Title>
         <ActivityIndicator size='large' color={COLORS.brand} />
       </View>

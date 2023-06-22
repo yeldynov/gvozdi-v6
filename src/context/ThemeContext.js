@@ -10,7 +10,7 @@ export const ThemeProvider = ({ children }) => {
     loadThemePreference();
   }, []);
 
-  loadThemePreference = async () => {
+  const loadThemePreference = async () => {
     try {
       const themePreference = await AsyncStorage.getItem('themePreference');
       if (themePreference) {
@@ -25,10 +25,7 @@ export const ThemeProvider = ({ children }) => {
     try {
       const newThemePreference = isDarkTheme ? 'light' : 'dark';
 
-      await AsyncStorage.setItem(
-        'themePreference',
-        JSON.stringify(newThemePreference)
-      );
+      await AsyncStorage.setItem('themePreference', newThemePreference);
 
       setIsDarkTheme(!isDarkTheme);
     } catch (error) {
