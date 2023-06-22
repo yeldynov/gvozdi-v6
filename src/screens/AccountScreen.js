@@ -40,7 +40,7 @@ const AccountScreen = () => {
       <LanguageButtons setLang={setLang} lang={lang} />
 
       <View style={styles.switchContainer}>
-        <Text style={[textStyle, styles.langText]}>
+        <Text style={[textStyle, styles.langText]} onPress={toggleTheme}>
           {i18n.t('lightThemeText')}
         </Text>
         <Switch
@@ -49,7 +49,7 @@ const AccountScreen = () => {
           onValueChange={toggleTheme}
           value={isDarkTheme}
         />
-        <Text style={[textStyle, styles.langText]}>
+        <Text style={[textStyle, styles.langText]} onPress={toggleTheme}>
           {i18n.t('darkThemeText')}
         </Text>
       </View>
